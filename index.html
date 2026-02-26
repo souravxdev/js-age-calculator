@@ -1,22 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Age Calculator</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Age Calculator</h1>
-        <div class="form">
-            <label for="birthday">Enter your date of birth</label>
-            <input type="date" id="birthday" name="birthday">
-            <button id="btn">Calculate Age</button>
-            <p id="result"></p>
-        </div>
-    </div>
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>     <!-- Meta configurations for proper rendering and responsiveness -->
+    <title>Age Calculator</title>                                               <!-- Page title shown in browser tab -->
+    <link rel="stylesheet" href="css/styles.css"/>                              <!-- Link to external css/stylesheet -->
+  </head>
+  <body>
+    <main class="app">                                                          <!-- Main wrapper for semantic structure -->
+      <section class="card">                                                    <!-- Card container to visually group content -->
+        <h1 class="card__title">Age Calculator</h1>                             <!-- Main heading for the application -->
+        <form id="age-form" class="form" novalidate>                            <!-- Form elemenet:
+                                                                                    - Handles user input
+                                                                                    - novalidate disables default browser validation
+                                                                                    - We handle validation manually in JS
+                                                                                -->
+          <div class="form__group">                                             <!--Input group wrapper -->
+            <label for="birthday" class="form__label">                          <!--Label improves accessibility -->
+              Enter your date of birth
+            </label>
 
-    <script src="script.js"></script>
-</body>
+              <input
+                type="date"
+                id="birthdate"
+                name="birthdate"
+                class="form__input"
+                required
+              />                                                                <!-- Date input:
+                                                                                    - required occures, user must select a date
+                                                                                    - JS performs additional validation
+                                                                                -->
+              <small class="form__error" id="error-message"></small>            <!-- Error message placeholder (controlled via JS) -->
+          </div>
+
+          <button type="submit" class="btn">Calculate Age</button>              <!-- Submit button triggers calculation -->
+        </form>
+
+        <p class="result" id="result" aria-live="polite"></p>                   <!-- Result container:
+                                                                                    - aria-live="polite" ensures screen readers
+                                                                                    - announces updates when content changes 
+                                                                                -->
+      </section>
+    </main>
+
+    <script src="js/app.js"></script>                                           <!-- Defer ensures scripts loads after HTML parsing-->
+  </body>
 </html>
